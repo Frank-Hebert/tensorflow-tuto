@@ -6,12 +6,15 @@ import tensorflow as tf
 # Iintiatilization of Tensors
 
 x = tf.constant(4.0, shape=(1,1))
-print(x)
+
 y = tf.eye(3)
-print(y)
+
 
 # Mathematical Operations
 
+x = tf.constant([1,2,3])
+y = tf.constant([9,8,7])
+print(x+y)
 # Indexing
 
 # Reshaping
