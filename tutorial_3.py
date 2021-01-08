@@ -38,15 +38,15 @@ model.add(layers.Dense(10))
 # model = keras.Model(inputs=model.inputs,
 #                     outputs=[model.layers[-2].output]) #-1 is dense(10), -2 is dense(256)...
 
-test = keras.Model(inputs=model.inputs,
-                    outputs=[model.output for layer in model.layers])
-features = test.predict(x_train)
+# model = keras.Model(inputs=model.inputs,
+#                     outputs=[model.output for layer in model.layers])
+# features = model.predict(x_train)
 
-for feature in features:
-    print(feature.shape)
+# for feature in features:
+#     print(feature.shape)
 
 
-sys.exit()
+# sys.exit()
 
 # Functional API (A bit more flexible)
 
@@ -65,3 +65,8 @@ model.compile(
 
 model.fit(x_train, y_train, batch_size=32, epochs=5, verbose=2)
 model.evaluate(x_test, y_test, batch_size=32, verbose=2)
+
+
+/**
+    sdfsfdss
+*/
