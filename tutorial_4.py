@@ -1,10 +1,8 @@
 # Convolutional Neural Networks with Sequential and Functional API
 import os
-import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.datasets import cifar10
-import sys
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
