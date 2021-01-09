@@ -1,3 +1,4 @@
+# SOURCE : https://www.youtube.com/channel/UCkzW5JSFwvKRjXABI-UTAkQ
 # Convolutional Neural Networks with Sequential and Functional API
 import os
 from tensorflow import keras
