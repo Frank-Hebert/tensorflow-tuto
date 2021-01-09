@@ -37,7 +37,8 @@ model.add(layers.Dense(10))
 
 
 # model = keras.Model(inputs=model.inputs,
-#                     outputs=[model.layers[-2].output]) #-1 is dense(10), -2 is dense(256)...
+#                     outputs=[model.layers[-2].output]) #-1 is dense(10), -2
+# is dense(256)...
 
 # model = keras.Model(inputs=model.inputs,
 #                     outputs=[model.output for layer in model.layers])
