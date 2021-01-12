@@ -3,7 +3,7 @@ import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.keras import layers, regularizers
 from tensorflow.keras.datasets import mnist
 import pandas as pd
 
@@ -56,4 +56,39 @@ test_dataset = (
 )
 
 inputs = keras.Input(shape=(64, 64, 1))
-x = layers.Conv2D()
+x = layers.Conv2D(
+    filters=32,
+    kernel_size=3,
+    padding="same",
+    kernel_regularizer=regularizers.l2(WEIGHT_DECAY),
+)(inputs)
+x = layers.BatchNormalization()(x)
+x = keras.activations.relu(x)
+x = layers.Conv2D(64, 3, kernel_initializer=regularizers.l2(WEIGHT_DECAY))(x)
+x = layers.BatchNormalization()(x)
+x = keras.activations.relu(x)
+x = layers.MaxPool2D()(x)
+x = layers.Conv2D(
+    64, 3, activation="relu", kernel_regularizer=regularizers.l2(WEIGHT_DECAY)
+)(x)
+x = layers.Conv2D(128, 3, activation="relu")(x)
+x = layers.Flatten()(x)
+x = layers.Dense(128, activation="relu")(x)
+x = layers.Dropout(0.5)(x)
+x = layers.Dense(64, activation="relu")(x)
+output1 = layers.Dense(10, activation="softmax", name="firt_number")(x)
+output2 = layers.Dense(10, activation="softmax", name="second_number")(x)
+
+model = keras.Model(inputs=inputs, outputs=[output1, output2])
+
+model.compile(
+    optimizer=keras.optimizers.Adam(LEARNING_RATE),
+    loss=[
+        keras.losses.SparseCategoricalCrossentropy(),
+        keras.losses.SparseCategoricalCrossentropy(),
+    ],
+)
+metris = ["accuracy"]
+
+model.fit(train_dataset, epochs=5, verbose=1)
+model.evaluate(test_dataset, verbose=1)
