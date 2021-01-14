@@ -46,13 +46,13 @@ model = model1
 # loading model weights
 # model.load_weights("saved_model/")
 
-# model.compile(
-#     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-#     optimizer=keras.optimizers.Adam(lr=0.001),
-#     metrics=["accuracy"],
-# )
+model.compile(
+    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    optimizer=keras.optimizers.Adam(lr=0.001),
+    metrics=["accuracy"],
+)
 
-model = keras.models.load_model("complete_saved_model/")
+# model = keras.models.load_model("complete_saved_model/")
 
 model.fit(x_train, y_train, batch_size=64, epochs=2, verbose=1)
 model.evaluate(x_test, y_test, batch_size=64, verbose=1)
@@ -60,4 +60,4 @@ model.evaluate(x_test, y_test, batch_size=64, verbose=1)
 # model.save_weights("saved_model/")
 
 # saving complete model (serialization)
-model.save("complete_saved_model/")
+model.save("pretrained_model/")
